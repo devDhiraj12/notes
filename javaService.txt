@@ -1,0 +1,36 @@
+
+sudo nano /etc/systemd/system/springboot.service
+
+
+[Unit]
+Description=QuickInfra Application
+After=network.target
+
+[Service]
+
+Type=simple
+
+User=root
+
+Restart=on-failure
+
+RestartSec=10
+
+ExecStart=/usr/lib/jvm/zulu-fx-17/bin/java -jar /home/ec2-user/spring.jar
+
+SuccessExitStatus=143
+
+[Install]
+
+WantedBy=multi-user.target
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+sudo systemctl enable springboot
+
+sudo systemctl start springboot
+
+sudo systemctl status springboot
+
+sudo journalctl -u springboot

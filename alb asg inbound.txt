@@ -1,0 +1,17 @@
+alb asg 
+inbound- 80, 443, 8000
+outbound- all ports all traffic. 0.0.0.0/0
+
+
+app sg 
+inbound- all ports all traffic from alb sg
+outbound- all ports all traffic. 0.0.0.0/0
+
+db sg inbound
+
+
+
+Que
+
+Staging-delvium-alb-sg
+(already exist) in delvium account

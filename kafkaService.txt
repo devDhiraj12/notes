@@ -1,0 +1,86 @@
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+bin\windows\kafka-server-start.bat config\server.properties
+
+----------------------------------------------------------------------------------------------------------------
+
+Create new topic 
+>bin\windows\kafka-topics.bat --create --topic user-topic --bootstrap-server localhost:9092
+
+Produce new topic 
+bin\windows\kafka-console-producer.bat --topic user-topic --bootstrap-server localhost:9092
+
+Consuming message
+bin\windows\kafka-console-consumer.bat --topic topic1 --from-beginning --bootstrap-server localhost:9092
+
+----------------------------------------------------------------------------------------------------------------
+
+sudo nano /etc/systemd/system/zookeeper.service
+sudo rm /etc/systemd/system/zookeeper.service
+
+//Zookeeper service
+
+[Unit]
+Description=Apache Zookeeper
+Documentation=http://zookeeper.apache.org
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/ec2-user/kafka_2.13-3.6.1/bin/zookeeper-server-start.sh   /home/ec2-user/kafka_2.13-3.6.1/config/zookeeper.properties
+ExecStop=/home/ec2-user/kafka_2.13-3.6.1/bin/zookeeper-server-stop.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+----------------------------------------------------------------------------------------------------------------
+sudo nano /etc/systemd/system/kafka.service
+sudo rm /etc/systemd/system/kafka.service
+
+//kafka service
+
+[Unit]
+Description=Apache Kafka
+Documentation=http://kafka.apache.org
+After=zookeeper.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/ec2-user/kafka_2.13-3.6.1/bin/kafka-server-start.sh   /home/ec2-user/kafka_2.13-3.6.1/config/server.properties
+ExecStop=/home/ec2-user/kafka_2.13-3.6.1/bin/kafka-server-stop.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+
+
+
+
+ /home/ec2-user/kafka_2.13-3.6.0/bin/kafka-server-start.sh [-daemon] /home/ec2-user/kafka_2.13-3.6.0/config/server.properties [--override property=value]*
+
+----------------------------------------------------------------------------------------------------------------
+
+journalctl -u kafka
+sudo systemctl daemon-reload
+
+sudo systemctl enable zookeeper
+sudo systemctl enable kafka
+
+sudo systemctl start zookeeper
+sudo systemctl start kafka
+
+sudo systemctl status zookeeper
+sudo systemctl status kafka
+
+
+journalctl -u kafka
+
+
+netstat -anp | grep 2181
+
+
+/home/ec2-user/kafka_2.12-2.2.1/bin/kafka-topics.sh --list --bootstrap-server localhost:2181

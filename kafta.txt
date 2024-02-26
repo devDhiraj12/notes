@@ -1,0 +1,28 @@
+start zookeeper server
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+
+start kafka server
+
+bin\windows\kafka-server-start.bat config\server.properties
+
+
+create topic in kafka
+bin\windows\kafka-topics.bat --create --topic user-topic --bootstrap-server localhost:9092
+
+/home/ec2-user/kafka_2.13-3.6.0/bin/kafka-topics.sh --create --topic user-topic --bootstrap-server 54.234.213.11:9092
+
+
+write msg in topic [producer]
+bin\windows\kafka-console-producer.bat --topic user-topic --bootstrap-server localhost:9092
+
+
+read msg in topic [consumer]
+
+bin\windows\kafka-console-consumer.bat --topic topic1 --from-beginning --bootstrap-server localhost:9092
+
+
+
+list of topics
+
+bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092

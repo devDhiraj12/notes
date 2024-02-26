@@ -1,0 +1,379 @@
+Test case 1  =>
+[
+    {
+        "field": "event",
+        "operator": "equals",
+        "value": "end",
+        "logicalOperator": "and"
+    }
+   
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Test case 1 output =>
+[
+    {
+        "_id": "658c09548b42e47cef7b57da",
+        "event": "ended",
+        "time": 88.560907,
+        "timestamp": 1703676244901,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c095f8b42e47cef7b57e9",
+        "event": "ended",
+        "time": 88.560907,
+        "timestamp": 1703676255172,
+        "userId": "222",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    }
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Test case 2  =>
+[
+    {
+        "field": "event",
+        "operator": "equals",
+        "value": "time",
+        "logicalOperator": "and"
+    },
+ {
+        "field": "userId",
+        "operator": "equals",
+        "value": "222",
+        "logicalOperator": "and"
+    }
+   
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Test case 2 output =>
+
+[
+    {
+        "_id": "658c09588b42e47cef7b57dc",
+        "event": "timeupdate",
+        "time": 0,
+        "timestamp": 1703676248540,
+        "userId": "222",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c095a8b42e47cef7b57e1",
+        "event": "timeupdate",
+        "time": 0.200489,
+        "timestamp": 1703676251001,
+        "userId": "222",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c095b8b42e47cef7b57e2",
+        "event": "timeupdate",
+        "time": 0.466687,
+        "timestamp": 1703676251267,
+        "userId": "222",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c095b8b42e47cef7b57e3",
+        "event": "timeupdate",
+        "time": 0.7316,
+        "timestamp": 1703676251532,
+        "userId": "222",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    }
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+test case 3 =>
+
+[
+    {
+        "field": "pageViewed",
+        "operator": "gt",
+        "value": "1",
+        "logicalOperator": "or"
+    },
+ {
+        "field": "userId",
+        "operator": "equals",
+        "value": "123",
+        "logicalOperator": "and"
+    }
+   
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+test case 3 output =>
+[
+    {
+        "_id": "658c091f8b42e47cef7b57c3",
+        "timestamp": 1703676191076,
+        "pageViewed": 2,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09208b42e47cef7b57c4",
+        "timestamp": 1703676192201,
+        "pageViewed": 3,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09228b42e47cef7b57c5",
+        "timestamp": 1703676194450,
+        "pageViewed": 4,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09248b42e47cef7b57c6",
+        "timestamp": 1703676196234,
+        "pageViewed": 5,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09268b42e47cef7b57c7",
+        "timestamp": 1703676198705,
+        "pageViewed": 6,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09288b42e47cef7b57c8",
+        "timestamp": 1703676200650,
+        "pageViewed": 7,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09308b42e47cef7b57c9",
+        "timestamp": 1703676208792,
+        "pageViewed": 6,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09318b42e47cef7b57ca",
+        "timestamp": 1703676209640,
+        "pageViewed": 5,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09338b42e47cef7b57cb",
+        "timestamp": 1703676211609,
+        "pageViewed": 6,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    },
+    {
+        "_id": "658c09348b42e47cef7b57cc",
+        "timestamp": 1703676212840,
+        "pageViewed": 5,
+        "userId": "123",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "pdfId": "pdf1"
+    }
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+test case 4 =>
+[
+    {
+        "field": "time",
+        "operator": "lt",
+        "value": "5",
+        "logicalOperator": "and"
+    }
+   
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+test case 4 output =>
+
+[
+    {
+        "_id": "658c094a8b42e47cef7b57cd",
+        "event": "timeupdate",
+        "time": 0,
+        "timestamp": 1703676234571,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c094b8b42e47cef7b57ce",
+        "event": "loadedmetadata",
+        "time": 0,
+        "timestamp": 1703676235731,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c094c8b42e47cef7b57cf",
+        "event": "loadeddata",
+        "time": 0,
+        "timestamp": 1703676236384,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    }]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+test case 5 =>
+[
+    {
+        "field": "campaignId",
+        "operator": "equals",
+        "value": "diwali",
+        "logicalOperator": "and"
+    },
+ {
+        "field": "time",
+        "operator": "gt",
+        "value": "1",
+        "logicalOperator": "and"
+    }
+   
+]
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test case 5 output =>
+[
+    {
+        "_id": "658c09508b42e47cef7b57d5",
+        "event": "pause",
+        "time": 86.861896,
+        "timestamp": 1703676240725,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c09508b42e47cef7b57d6",
+        "event": "seeking",
+        "time": 86.861896,
+        "timestamp": 1703676240730,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c09508b42e47cef7b57d7",
+        "event": "play",
+        "time": 86.861896,
+        "timestamp": 1703676240850,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c09538b42e47cef7b57d8",
+        "event": "canplay",
+        "time": 86.863083,
+        "timestamp": 1703676243139,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    },
+    {
+        "_id": "658c09538b42e47cef7b57d9",
+        "event": "seeked",
+        "time": 86.862197,
+        "timestamp": 1703676243138,
+        "userId": "111",
+        "userIpAddress": "171.50.245.2",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 OPR/105.0.0.0",
+        "cookieEnabled": true,
+        "campaignId": "Diwali campaign",
+        "videoId": "video1"
+    }

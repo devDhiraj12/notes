@@ -1,0 +1,35 @@
+terraform init
+
+terraform plan
+
+terraform apply --auto-approve
+
+terraform destroy --auto-approve
+
+terraform fmt
+
+terraform providers
+
+"recreate resource when apply commond run"
+terraform taint 
+
+terraform workspace list
+
+terraform workspace show
+
+terraform workspace new ws_name
+
+terraform workspace select ws_name     (changing ws)
+
+terraform apply --auto-approve --var-file=prod-terraform.tfvars
+
+terraform destroy --auto-approve --var-file=stage-terraform.tfvars
+
+ssh-keygen -t rsa
+-----------------------------------------------------------------------
+
+function
+
+file("${path.module}/fileName")
+
+ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*  (ubuntu ami free tier)

@@ -1,0 +1,110 @@
+                                            Install MySQL
+sudo apt update
+
+ apt install mysql-server-8.0
+
+
+ -----Allow Remote Access to MySQL---------- 
+
+nano /etc/mysql/mysql.conf.d/mysqld.cnf;
+
+bind-address            = 0.0.0.0
+
+
+
+sudo mysql
+
+CREATE DATABASE your_database_name;
+
+create a super user in MYSQL to Connect From Anywhere;
+
+CREATE USER "root1"@"%" IDENTIFIED WITH mysql_native_password BY "dhirajD12";
+
+GRANT ALL PRIVILEGES ON *.* TO "root1"@"%" with grant option;
+
+FLUSH PRIVILEGES;
+  
+systemctl restart mysql;
+
+sudo systemctl status mysql;
+
+
+exit;
+
+ mysql -h 3.109.122.22 -u root1 -p
+          db public ip
+
+
+
+ip address : hostname -I;
+
+----------------------------------------------------------------------------------------------------------------------------------
+tinnaling to 
+
+ssh -i mumbai-region.pem root1@52.66.9.34
+        key                      db private ip
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+see all users
+
+SELECT user, host FROM mysql.user;
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+mysql client install (application server terminal)
+
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb
+
+dpkg -i mysql-apt-config_0.8.12-1_all.deb
+
+ apt install mysql-server-8.0
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+mysql> show global variables like 'local_infile';
+
+ 
+  if it shows-
+
+  +---------------+-------+
+
+  | Variable_name | Value |
+
+  +---------------+-------+
+
+  | local_infile  |  OFF  |
+
+  +---------------+-------+
+
+  (this means local_infile is disable)
+
+ 
+
+  then enable with this:
+
+  mysql> set global local_infile=true;
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+docker mysql image
+
+docker pull mysql:8.0
+
+docker run --name mysql-container -d -e MYSQL_ROOT_PASSWORD=root mysql:8.0
+
+docker container exec -it cintainer_id bash
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+docker run --name mysql --network spring-mysql-net -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=userdata -r  -e MYSQL_PASSWORD=root mysql:8.0
+
+
+
+------------------------------------------------------------------------------------
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Admin@123';

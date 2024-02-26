@@ -1,0 +1,21 @@
+host-----
+
+[servers]
+server1 ansible_host=75.101.182.234
+server2 ansible_host=52.54.163.66
+server3 ansible_host=3.84.212.148
+----------------------------------------------------------------------------------------
+ti check host
+ansible-inventory --list -y -i /home/dhiraj/inventory/hosts.ini
+
+to ping all servers
+ ansible all -m ping -i /home/dhiraj/inventory/hosts.ini --private-key=~/.ssh/ansible_key -u ubuntu
+
+
+to run a playbook
+from root(user key is in root)
+ansible-playbook create_file.yml -i /home/dhiraj/inventory/hosts.ini --private-key=~/.ssh/ansible_key -u ubuntu
+
+from user (user key is in user)
+
+ansible-playbook install_mysql -i /home/dhiraj/inventory/hosts.ini --private-key=/home/dhiraj/ansible_key.pem -u ubuntu

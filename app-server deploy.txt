@@ -1,0 +1,48 @@
+
+
+sudo su
+
+sudo apt update
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.Install java 
+sudo apt install openjdk-17-jdk or sudo yum install java-17-amazon-corretto
+
+java -version
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+2.Install Tomcat:
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.9/bin/apache-tomcat-10.1.9.tar.gz
+
+Extract the downloaded file 
+tar -xf apache-tomcat-10.1.9.tar.gz
+
+Make folder tomcat and move extracted file that location
+sudo mv apache-tomcat-10.1.9 /opt/tomcat
+
+Set the environment variable CATALINA_HOME to the Tomcat installation directory by editing the .bashrc file:
+nano ~/.bashrc
+
+Add the following line at the end of the file:
+export CATALINA_HOME=/tomcat
+
+Ctrl +O to save ,hit enter and Ctrl+X to exit
+
+Load the modified environment variables by running the following command:
+source ~/.bashrc
+
+Start Tomcat by executing the startup script:
+$CATALINA_HOME/bin/startup.sh
+or
+catalina.sh start
+
+
+Verify that Tomcat is running by accessing your instance's public IP or DNS name on port 8080 in a web browser: http://<public_ip>:8080
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+TO deploy
+java -jar filename.jar
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,97 @@
+- name: Install MySQL and Create Database/User
+  hosts: servers
+  become: true
+
+  vars:
+    mysql_bind_address: "0.0.0.0"
+
+
+  tasks:
+    - name: Update all Debian/Ubuntu packages to their latest version
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: Install MySQL client and server
+      apt:
+        name:
+          - mysql-client
+          - mysql-server
+        state: latest
+      when: ansible_os_family == "Debian"
+
+    - name: Install MySQL client and server
+      yum:
+        name:
+          - mysql
+          - mysql-server
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: Ensure MySQL service is started and enabled
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Set MySQL root password
+      debconf:
+        name: 'mysql-server'
+        question: 'mysql-server/root_password'
+        value: 'Admin@123'
+        vtype: 'password'
+
+      when: ansible_os_family == "Debian"
+
+    - name: Set MySQL root password
+      debconf:
+        name: 'mysql-server'
+        question: 'mysql-server/root_password'
+        value: 'Admin@123'
+        vtype: 'password'
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Python MySQL client library
+      apt:
+        name: python3-pymysql
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Python MySQL client library
+      yum:
+        name: python3-PyMySQL
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Create MySQL superuser with all privileges
+      mysql_user:
+        name: 'superuser'
+        host: '%'
+        password: 'Admin@123'
+        priv: '*.*:ALL'
+        state: present
+        login_unix_socket: /run/mysqld/mysqld.sock
+
+    - name: Create MySQL database
+      mysql_db:
+        name: 'userdata'
+        state: present
+        login_unix_socket: /run/mysqld/mysqld.sock
+
+    - name: Copy my.cnf template
+      template:
+        src: /home/dhiraj/playbooks/src/my_cnf.j2
+        dest: /etc/mysql/my.cnf
+      notify: Restart MySQL
+
+    - name: Ensure MySQL service is running
+      service:
+        name: mysql
+        state: started
+
+  handlers:
+    - name: Restart MySQL
+      service:
+        name: mysql
+        state: restarted

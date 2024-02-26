@@ -1,0 +1,9 @@
+sudo apt install apache2
+sudo ufw app list
+sudo ufw allow 'Apache'
+sudo systemctl status apache2
+hosrname -I
+curl -4 icanharip.cpm
+sudo ufw app list
+------check ip address--------------------
+

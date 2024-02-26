@@ -1,0 +1,49 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/*.jar
+    - appspec.yml
+    - start_server.sh
+    - change_permissions.sh
+  discard-paths: true
+
+cache:
+  paths:
+    - '/root/.m2/**/*'
+
+
+
+start_server.sh (file)
+
+java -jar /tmp/demo-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &
+
+
+
+---FOR WINDOWS---------------
+
+version: 0.2
+phases:
+  build:
+    commands:
+      - mvn clean install
+artifacts:
+  files:
+    - target\*.jar
+    - appspec.yml
+    - deploy.bat
+  discard-paths: true

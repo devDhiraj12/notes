@@ -1,0 +1,42 @@
+# Download the latest stable version of Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# Apply executable permissions to the binary
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Create a symbolic link to make it accessible system-wide
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+# Verify the installation
+docker-compose --version
+
+--------------------------------------------------------------------------------------------------------------------------------------
+compose file =>
+
+version: '3'
+services:
+  docker:
+    build:
+      context: ./docker
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"z
+    depends_on:
+      - mysql-db
+  mysql-db:
+    image: mysql:latest
+    command: --bind-address=0.0.0.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: userdata
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+run compose file
+
+docker-compose up

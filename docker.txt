@@ -1,0 +1,65 @@
+
+sudo yum install docker
+
+sudo service docker start
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+create user in docker
+
+sudo usermod -a -G docker ec2-user
+
+-----------------------------------------------------------------------------------------------------------------------------
+create image
+docker build -t hello-world . 
+
+search image created in the above step 
+docker images --filter reference=hello-world
+
+now verify image working properly or not
+docker run -t -id -p 80:80 hello-world
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+touch dockerfile
+
+nano dockerfile
+
+FROM openjdk:17-jdk-slim
+VOLUME /tmp
+ARG JAR_FILE
+COPY valid.jar valid.jar
+ENTRYPOINT ["java","-jar","/valid.jar"]
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+to run docker img
+
+docker container run --rm --name valid-jar11 --publish 8080:8080 valid-jar11
+docker container run --rm --name valid-jar11 --publish  valid-jar11
+
+docker run -p host_port:Img_port Img_Name
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+delete img in docker
+
+docker rmi img_name
+
+-----------------------------------------------------------------------------------------------------------------------------
+container run
+
+docker container run -d valid-jar11
+
+
+ docker run -dp 127.0.0.1:8080:8080 valid-jar11
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+stop container
+
+docker container prune
+-----------------------------------------------------------------------------------------------------------------------------
+
+

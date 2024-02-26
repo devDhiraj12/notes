@@ -1,0 +1,12 @@
+tunnling
+
+ssh -i /path/to/key.pem -L local_port:db_server_private_ip:db_server_port user@app_server_public_ip
+ssh -i mumbai-region.pem ubuntu@10.0.1.40
+
+
+  1>  local_port: The local port number on the App Server that will be forwarded to the DB Server.
+  2>  db_server_private_ip: The private IP address of the DB Server in AWS.
+  3>  db_server_port: The port number of the DB Server that you want to access (e.g., 3306 for MySQL).
+  4>  key.pem: The private key file (.pem) associated with the App Server.
+  5>  user: The SSH username to access the App Server.
+  6>  app_server_public_ip: The public IP address of the App Server in AWS.

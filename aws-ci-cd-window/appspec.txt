@@ -1,0 +1,58 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /tmp/
+permissions:
+  - object: /tmp
+    pattern: "*.sh"
+    #    except: [/var/www/html/WordPress/ReadMe.txt]
+    #    owner: bob
+    #    group: writers
+    mode: 700
+hooks:
+  #  BeforeInstall:
+  #    - location: scripts/install_dependencies.sh
+  #      timeout: 300
+  #      runas: root
+  #  AfterInstall:
+  #    - location: ./change_permissions.sh
+  #      timeout: 300
+  #      runas: root
+  ApplicationStart:
+    - location: ./start_server.sh
+      timeout: 300
+      runas: root
+#  ApplicationStop:
+#    - location: scripts/stop_server.sh
+#      timeout: 300
+#      runas: root
+
+------------
+for ubuntu ami
+
+
+---FOR WINDOWS---------------------------------------------------------------------------------
+
+
+
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: C:\tmp\
+    overwrite: true
+file_exists_behavior: OVERWRITE
+hooks:
+  ApplicationStart:
+    - location: \deploy.bat
+      timeout: 300
+
+
+
+--------------------------------------------------------------------------------------------------------
+deploy.bat
+
+
+start "Demo App" /B java -jar C:\tmp\demo.jar
+exit /b 1
