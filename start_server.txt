@@ -1,2 +1,10 @@
 #!/bin/bash
-java -jar /tmp/project-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &
+java -jar spring.jar >/dev/null 2>&1 &
+
+process list
+sudo netstat -tuln | grep 8080
+
+kill process
+sudo lsof -ti :8080 | xargs sudo kill -9
+
+ nohup java -jar /home/ec2-user/jars/spring.jar >/dev/null 2>&1 &

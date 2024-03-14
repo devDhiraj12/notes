@@ -1,0 +1,30 @@
+imp link : https://github.com/Bhoopesh123/aws/blob/main/README.md
+
+1.install aws cli
+2.install eksctl
+
+>create cluster
+eksctl create cluster  --name dev-cluster --version 1.29 --nodegroup-name demo-ubuntus --node-type t2.micro --nodes 2
+
+eksctl create cluster \
+  --name my-eks-cluster \
+  --region us-east-1 \
+  --version 1.29 \
+  --nodegroup-name worker-nodes \
+  --node-type t3.medium \
+  --nodes 2
+
+
+>Configure kubectl with your EKS cluster
+aws eks --region us-east-1 update-kubeconfig --name my-eks-cluster
+
+check	
+kubectl config current-context
+
+>delete cluster
+eksctl delete  cluster --name dev-cluster
+
+>eks node role policies
+AmazonEKSWorkerNodePolicy
+AmazonEC2ContainerRegistryReadOnly
+AmazonEKS_CNI_Policy

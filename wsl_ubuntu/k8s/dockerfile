@@ -1,0 +1,5 @@
+FROM openjdk:17-jdk-slim
+VOLUME /tmp
+ARG JAR_FILE
+COPY valid.jar valid.jar
+ENTRYPOINT ["java","-jar","/valid.jar"]

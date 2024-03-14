@@ -1,0 +1,25 @@
+---
+- name: Configure MySQL
+  hosts: servers
+  become: yes
+
+  vars:
+    mysql_bind_address: "0.0.0.0"
+
+  tasks:
+    - name: Copy my.cnf template
+      template:
+        src: /home/dhiraj/playbooks/src/my_cnf.j2
+        dest: /etc/mysql/my.cnf
+      notify: Restart MySQL
+
+    - name: Ensure MySQL service is running
+      service:
+        name: mysql
+        state: started
+
+  handlers:
+    - name: Restart MySQL
+      service:
+        name: mysql
+        state: restarted

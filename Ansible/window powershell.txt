@@ -1,0 +1,40 @@
+
+host
+
+[windows_servers]
+54.227.33.212
+
+[windows_servers:vars]
+ansible_connection=winrm
+ansible_user=Administrator
+ansible_password="cTEf1)rB)O7QGEn.av2sVHAP6v3RZdfe"
+ansible_winrm_server_cert_validation=ignore
+ansible_winrm_transport=basic
+ansible_port=5986
+
+-------------------------------------------------------------------------------------
+(window powershell )
+
+Configuring HTTPS listener in Windows:
+
+Step1: Create Certificate
+New-SelfSignedCertificate -DnsName "DNS Name" -CertStoreLocation Cert:\LocalMachine\My
+
+Step2:
+Whitelist port 5985(winrm-http) and 5986(winrm-https) in the security group of the the windows server.
+
+Step3: Create HTTPS Listener
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS '@{Hostname="DNS Name"; CertificateThumbprint="ThumbPrint"}'
+
+Step4:
+Add  new firewall rule for 5986
+netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986
+
+Step5:
+Check the listener and make sure https listener is there.
+winrm e winrm/config/Listener
+
+Check The Service
+winrm get winrm/config
+Make sure the Basic Auth is set to true, if not then execute below commands.
+Set-Item -Force WSMan:\localhost\Service\auth\Basic $true
